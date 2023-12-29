@@ -128,15 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Address.cpp" />
     <ClCompile Include="Boot.cpp" />
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="Mem.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="Updater.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Address.h" />
     <ClInclude Include="Boot.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Mem.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="Offsets.h" />
+    <ClInclude Include="Signatures.h" />
     <ClInclude Include="Target.h" />
+    <ClInclude Include="Updater.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -43,16 +43,16 @@ bool Interface::FindProcess(const char* ProcessName, DWORD& Pid) {
 	return false;
 }
 
-PVOID Interface::GetModule(const wchar_t* ModuleName) {
+Module Interface::GetModule(const wchar_t* ModuleName) {
 
 	auto Snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, m_ProcessId);
 
 	if (!Snapshot) {
 		CloseHandle(Snapshot);
-		return 0;
+		return {};
 	}
 
-	PVOID Buffer = NULL;
+	auto Buffer = Module{};
 
 	MODULEENTRY32W ModuleEntry;
 	ModuleEntry.dwSize = sizeof(ModuleEntry);
@@ -62,7 +62,13 @@ PVOID Interface::GetModule(const wchar_t* ModuleName) {
 
 			if (!wcscmp(ModuleName, ModuleEntry.szModule)) {
 
-				Buffer = (PVOID)ModuleEntry.modBaseAddr;
+				Buffer = Module(
+					ModuleName,
+					(UINT64)ModuleEntry.modBaseAddr,
+					(UINT64)ModuleEntry.modBaseSize
+				);
+
+				break;
 			}
 
 		} while (Module32NextW(Snapshot, &ModuleEntry));

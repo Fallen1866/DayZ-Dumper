@@ -1,5 +1,7 @@
 #pragma once
 
+class Module;
+
 class Interface {
 private:
 	DWORD	m_ProcessId = 0;
@@ -28,7 +30,7 @@ public:
 		::WriteProcessMemory(m_Handle, (LPVOID)MemoryLocation, &Buffer, sizeof(T), NULL);
 	}
 
-	PVOID GetModule(const wchar_t* ModuleName);
+	Module GetModule(const wchar_t* ModuleName);
 
 	bool ReadToBuffer(PVOID MemoryLocation, PVOID Buffer, SIZE_T Size);
 	bool WriteToBuffer(PVOID MemoryLocation, PVOID Buffer, SIZE_T Size);

@@ -20,12 +20,18 @@
 
 /* Resource Headers */
 #include "Target.h"
+#include "Offsets.h"
+#include "Signatures.h"
 
 /* Utility Headers */
 #include "Mem.h"
+#include "Address.h"
+#include "Module.h"
 
 
 /* Module Headers */
-
+#include "Updater.h"
 
 #include "Boot.h"
+
+inline Module g_Game = Module();
